@@ -1,0 +1,257 @@
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+
+export type Lang = "ru" | "en";
+export type Theme = "light" | "dark";
+
+type Dict = Record<string, string | string[]>;
+
+const dict: Record<Lang, Dict> = {
+  ru: {
+    "nav.services": "Услуги",
+    "nav.cases": "Кейсы",
+    "nav.process": "Процесс",
+    "nav.tools": "Стек",
+    "nav.contact": "Контакт",
+    "nav.cta": "Начать проект",
+
+    "hero.kicker": "№ 001 — Аналитическое бюро",
+    "hero.title.1": "ДАННЫЕ —",
+    "hero.title.2": "ЭТО ",
+    "hero.title.3": "ПОРЯДОК",
+    "hero.sub": "Превращаем хаотичные потоки информации в строгую архитектуру решений. Аналитика для тех, кто ценит точность выше интуиции.",
+    "hero.status": "СИСТЕМА: АКТИВНА",
+
+    "services.s1.title": "Аналитические дашборды",
+    "services.s1.desc": "Визуализация ключевых показателей в реальном времени. Интуитивно понятные интерфейсы для принятия быстрых решений.",
+    "services.s2.title": "Прогнозные модели",
+    "services.s2.desc": "ML-алгоритмы для предсказания спроса, оттока клиентов и рыночных трендов с точностью до 98%.",
+    "services.s3.title": "Аудит данных",
+    "services.s3.desc": "Оценка качества данных, устранение дублей и настройка автоматизированного сбора из всех источников.",
+
+    "metrics.kicker": "№ 002 — Результаты",
+    "metrics.title": "Цифры, которые подтверждают экспертизу",
+    "metrics.m1": "Средний рост ROI после внедрения BI",
+    "metrics.m2": "Крупных внедрений в ритейле и финтехе",
+    "metrics.m3": "Автоматизированный мониторинг систем",
+
+    "process.kicker": "№ 003 — Метод",
+    "process.title": "Четыре фазы. Никаких отклонений.",
+    "process.p1.title": "Диагностика",
+    "process.p1.desc": "Аудит источников, инфраструктуры и бизнес-задач.",
+    "process.p2.title": "Архитектура",
+    "process.p2.desc": "Проектирование DWH и слоя визуализации.",
+    "process.p3.title": "Внедрение",
+    "process.p3.desc": "Разработка дашбордов и ETL-пайплайнов.",
+    "process.p4.title": "Поддержка",
+    "process.p4.desc": "Мониторинг и итеративное улучшение моделей.",
+
+    "tools.kicker": "№ 004 — Инструменты",
+    "tools.title": "Стек, который решает задачи",
+    "tools.hint": "← листай карточки →",
+    "tools.case": "Кейс",
+    "tools.solution": "Как решили",
+    "tools.example": "Пример",
+
+    "tools.sql.desc": "Аналитика над миллиардами строк в реальном времени. Агрегаты за секунды.",
+    "tools.sql.task": "Задача: посчитать DAU/MAU по городам за 7 дней на 2 млрд событий.",
+    "tools.sql.sol": "Решение: ClickHouse + uniq() агрегат, ответ за ~1.2с вместо 40 минут в Postgres.",
+    "tools.pbi.desc": "Интерактивные отчёты с drill-down. Интеграция с Excel и Azure.",
+    "tools.pbi.task": "Задача: единый отчёт продаж для 30 филиалов с drill-down до SKU.",
+    "tools.pbi.sol": "Решение: модель DAX + row-level security, обновление каждые 15 минут.",
+    "tools.air.desc": "Оркестрация ETL-пайплайнов. DAG с зависимостями, retry и alerting.",
+    "tools.air.task": "Задача: ночная загрузка из 12 источников с зависимостями и retry.",
+    "tools.air.sol": "Решение: DAG с SLA-алертами в Slack, fail-rate упал с 8% до 0.3%.",
+    "tools.meta.desc": "Ad-hoc вопросы без SQL. Дашборды для нетехнических команд.",
+    "tools.meta.task": "Задача: маркетинг хочет сам строить когорты без аналитика.",
+    "tools.meta.sol": "Решение: модель данных + шаблоны вопросов, -70% тикетов в команду BI.",
+    "tools.git.desc": "Версионирование моделей и SQL-скриптов. CI/CD для аналитики.",
+    "tools.git.task": "Задача: 5 аналитиков ломают прод-дашборды правками вслепую.",
+    "tools.git.sol": "Решение: PR-ревью + CI на dbt тестах, регрессии ловятся до релиза.",
+    "tools.py.desc": "Pandas, scikit-learn, Prophet. Автоматизация отчётности и ML.",
+    "tools.py.task": "Задача: спрогнозировать отток клиентов на 30 дней вперёд.",
+    "tools.py.sol": "Решение: scikit-learn + Prophet, ROC-AUC 0.87, экономия 2.4M ₽/мес.",
+
+    "pricing.base.tag": "База",
+    "pricing.base.name": "Аудит",
+    "pricing.base.price": "150к ₽",
+    "pricing.base.desc": "Разовое исследование инфраструктуры и качества данных.",
+    "pricing.pop.tag": "Популярное",
+    "pricing.pop.name": "Внедрение",
+    "pricing.pop.price": "450к+ ₽",
+    "pricing.pop.desc": "Разработка дашбордов и настройка сквозной аналитики под ключ.",
+    "pricing.cust.tag": "Под задачу",
+    "pricing.cust.name": "Прогноз",
+    "pricing.cust.price": "от 800к ₽",
+    "pricing.cust.desc": "ML-моделирование и предиктивная аналитика для сложных систем.",
+    "pricing.choose": "Выбрать",
+
+    "contact.kicker": "№ 005 — Контакт",
+    "contact.title": "ГОТОВЫ К ОПТИМИЗАЦИИ?",
+    "contact.name": "Имя",
+    "contact.email": "Email",
+    "contact.task": "Задача",
+    "contact.send": "Отправить запрос",
+    "contact.sent": "Отправлено ✓",
+
+    "footer.rights": "© 2026 CRESTVALE ANALYTICS. ВСЕ СИСТЕМЫ В НОРМЕ.",
+
+    "ui.theme.light": "Светлая",
+    "ui.theme.dark": "Тёмная",
+    "ui.lang": "RU / EN",
+  },
+  en: {
+    "nav.services": "Services",
+    "nav.cases": "Cases",
+    "nav.process": "Process",
+    "nav.tools": "Stack",
+    "nav.contact": "Contact",
+    "nav.cta": "Start a project",
+
+    "hero.kicker": "№ 001 — Analytics bureau",
+    "hero.title.1": "DATA IS",
+    "hero.title.2": "AN ",
+    "hero.title.3": "ORDER",
+    "hero.sub": "We turn chaotic streams of information into a strict architecture of decisions. Analytics for those who value precision over intuition.",
+    "hero.status": "SYSTEM: ACTIVE",
+
+    "services.s1.title": "Analytical dashboards",
+    "services.s1.desc": "Real-time visualization of key metrics. Intuitive interfaces for fast decisions.",
+    "services.s2.title": "Predictive models",
+    "services.s2.desc": "ML algorithms forecasting demand, churn and market trends with up to 98% accuracy.",
+    "services.s3.title": "Data audit",
+    "services.s3.desc": "Data quality assessment, deduplication and automated collection from every source.",
+
+    "metrics.kicker": "№ 002 — Results",
+    "metrics.title": "Numbers that prove expertise",
+    "metrics.m1": "Average ROI growth after BI rollout",
+    "metrics.m2": "Major deployments in retail & fintech",
+    "metrics.m3": "Automated systems monitoring",
+
+    "process.kicker": "№ 003 — Method",
+    "process.title": "Four phases. No deviations.",
+    "process.p1.title": "Diagnosis",
+    "process.p1.desc": "Audit of sources, infrastructure and business goals.",
+    "process.p2.title": "Architecture",
+    "process.p2.desc": "Designing DWH and the visualization layer.",
+    "process.p3.title": "Delivery",
+    "process.p3.desc": "Building dashboards and ETL pipelines.",
+    "process.p4.title": "Support",
+    "process.p4.desc": "Monitoring and iterative model improvement.",
+
+    "tools.kicker": "№ 004 — Tools",
+    "tools.title": "A stack that solves problems",
+    "tools.hint": "← swipe the cards →",
+    "tools.case": "Case",
+    "tools.solution": "How we solved it",
+    "tools.example": "Example",
+
+    "tools.sql.desc": "Real-time analytics over billions of rows. Aggregates in seconds.",
+    "tools.sql.task": "Goal: compute DAU/MAU by city over 7 days on 2B events.",
+    "tools.sql.sol": "Solution: ClickHouse + uniq() — answer in ~1.2s instead of 40 min in Postgres.",
+    "tools.pbi.desc": "Interactive reports with drill-down. Excel and Azure integration.",
+    "tools.pbi.task": "Goal: a unified sales report for 30 branches with drill-down to SKU.",
+    "tools.pbi.sol": "Solution: DAX model + row-level security, refreshed every 15 minutes.",
+    "tools.air.desc": "ETL pipeline orchestration. DAGs with dependencies, retries and alerting.",
+    "tools.air.task": "Goal: nightly load from 12 sources with dependencies and retries.",
+    "tools.air.sol": "Solution: DAG with SLA alerts to Slack, fail rate dropped from 8% to 0.3%.",
+    "tools.meta.desc": "Ad-hoc questions with no SQL. Dashboards for non-technical teams.",
+    "tools.meta.task": "Goal: marketing wants to build cohorts without an analyst.",
+    "tools.meta.sol": "Solution: data model + question templates, -70% tickets to BI team.",
+    "tools.git.desc": "Versioning of models and SQL scripts. CI/CD for analytics.",
+    "tools.git.task": "Goal: 5 analysts breaking prod dashboards with blind edits.",
+    "tools.git.sol": "Solution: PR review + CI on dbt tests — regressions caught pre-release.",
+    "tools.py.desc": "Pandas, scikit-learn, Prophet. Reporting and ML automation.",
+    "tools.py.task": "Goal: forecast customer churn 30 days ahead.",
+    "tools.py.sol": "Solution: scikit-learn + Prophet, ROC-AUC 0.87, $30K/mo saved.",
+
+    "pricing.base.tag": "Base",
+    "pricing.base.name": "Audit",
+    "pricing.base.price": "$1.5k",
+    "pricing.base.desc": "One-time research of infrastructure and data quality.",
+    "pricing.pop.tag": "Popular",
+    "pricing.pop.name": "Delivery",
+    "pricing.pop.price": "$4.5k+",
+    "pricing.pop.desc": "Dashboards and end-to-end analytics turnkey.",
+    "pricing.cust.tag": "Custom",
+    "pricing.cust.name": "Forecast",
+    "pricing.cust.price": "from $8k",
+    "pricing.cust.desc": "ML modelling and predictive analytics for complex systems.",
+    "pricing.choose": "Choose",
+
+    "contact.kicker": "№ 005 — Contact",
+    "contact.title": "READY TO OPTIMIZE?",
+    "contact.name": "Name",
+    "contact.email": "Email",
+    "contact.task": "Task",
+    "contact.send": "Send request",
+    "contact.sent": "Sent ✓",
+
+    "footer.rights": "© 2026 CRESTVALE ANALYTICS. ALL SYSTEMS NOMINAL.",
+
+    "ui.theme.light": "Light",
+    "ui.theme.dark": "Dark",
+    "ui.lang": "RU / EN",
+  },
+};
+
+type Ctx = {
+  lang: Lang;
+  setLang: (l: Lang) => void;
+  toggleLang: () => void;
+  theme: Theme;
+  setTheme: (t: Theme) => void;
+  toggleTheme: () => void;
+  t: (key: string) => string;
+};
+
+const AppCtx = createContext<Ctx | null>(null);
+
+export function AppProvider({ children }: { children: ReactNode }) {
+  const [lang, setLang] = useState<Lang>("ru");
+  const [theme, setTheme] = useState<Theme>("light");
+
+  // hydrate from storage on mount
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const sl = localStorage.getItem("lang") as Lang | null;
+    const st = localStorage.getItem("theme") as Theme | null;
+    if (sl === "ru" || sl === "en") setLang(sl);
+    if (st === "light" || st === "dark") setTheme(st);
+    else if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) setTheme("dark");
+  }, []);
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.lang = lang;
+    localStorage.setItem("theme", theme);
+    localStorage.setItem("lang", lang);
+  }, [theme, lang]);
+
+  const t = (key: string) => {
+    const v = dict[lang][key];
+    return typeof v === "string" ? v : key;
+  };
+
+  return (
+    <AppCtx.Provider
+      value={{
+        lang,
+        setLang,
+        toggleLang: () => setLang((l) => (l === "ru" ? "en" : "ru")),
+        theme,
+        setTheme,
+        toggleTheme: () => setTheme((t) => (t === "light" ? "dark" : "light")),
+        t,
+      }}
+    >
+      {children}
+    </AppCtx.Provider>
+  );
+}
+
+export function useApp() {
+  const ctx = useContext(AppCtx);
+  if (!ctx) throw new Error("useApp must be used within AppProvider");
+  return ctx;
+}
