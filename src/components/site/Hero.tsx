@@ -10,7 +10,7 @@ export function Hero() {
       {/* Giant ghost monogram */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-[8%] top-1/2 -translate-y-1/2 text-[42vw] leading-none font-extrabold tracking-tighter opacity-[0.08] select-none"
+        className="pointer-events-none absolute -right-[8%] top-1/2 -translate-y-1/2 text-[20rem] md:text-[30rem] lg:text-[40rem] leading-none font-extrabold tracking-tighter opacity-[0.08] select-none"
         style={{ fontFamily: "var(--font-mono)" }}
       >
         CV
@@ -26,7 +26,7 @@ export function Hero() {
       />
 
       <div className="relative max-w-[1440px] mx-auto px-6 md:px-16 pt-20 md:pt-28 pb-24 md:pb-32">
-        <h1 className="font-mono font-extrabold uppercase tracking-tight leading-[0.95] text-[12vw] md:text-[8vw] max-w-[14ch] animate-blur-in">
+        <h1 className="font-mono font-extrabold uppercase tracking-tight leading-[0.95] text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] max-w-[14ch] animate-blur-in">
           {t("hero.title.1")} {t("hero.title.2")}
           <span className="opacity-90">{t("hero.title.3")}.</span>
         </h1>
