@@ -13,7 +13,7 @@ export function Footer() {
           {t("footer.rights")}
         </div>
         <div className="flex gap-6 text-xs font-mono uppercase tracking-widest">
-          <a href="#" className="hover:text-primary transition-colors">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/dmitrii-khramov-548731417/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
           <a href="#" className="hover:text-primary transition-colors">Telegram</a>
         </div>
       </div>
