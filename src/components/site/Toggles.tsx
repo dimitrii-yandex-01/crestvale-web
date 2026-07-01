@@ -13,6 +13,8 @@ export function Toggles() {
         <span className={lang === "ru" ? "text-primary" : "opacity-50"}>RU</span>
         <span className="opacity-30">/</span>
         <span className={lang === "en" ? "text-primary" : "opacity-50"}>EN</span>
+        <span className="opacity-30">/</span>
+        <span className={lang === "es" ? "text-primary" : "opacity-50"}>ES</span>
       </button>
       <button
         onClick={toggleTheme}
