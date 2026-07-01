@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-export type Lang = "ru" | "en";
+export type Lang = "ru" | "en" | "es";
 export type Theme = "light" | "dark";
 
 type Dict = Record<string, string | string[]>;
@@ -262,7 +262,136 @@ const dict: Record<Lang, Dict> = {
 
     "ui.theme.light": "Light",
     "ui.theme.dark": "Dark",
-    "ui.lang": "RU / EN",
+    "ui.lang": "RU / EN / ES",
+  },
+  es: {
+    "nav.services": "Servicios",
+    "nav.cases": "Casos",
+    "nav.process": "Proceso",
+    "nav.tools": "Stack",
+    "nav.contact": "Contacto",
+    "nav.cta": "Iniciar proyecto",
+
+    "hero.kicker": "№ 001 — Plataforma de Gestión de Datos",
+    "hero.title.1": "LOS DATOS SON",
+    "hero.title.2": "UN ",
+    "hero.title.3": "SISTEMA",
+    "hero.sub": "Un sistema de datos completo para empresas. Desde almacenes y paneles hasta asistentes de IA corporativos.",
+    "hero.status": "SISTEMA: ACTIVO",
+
+    "services.s1.title": "Asistente de IA Corporativo",
+    "services.s1.desc": "Búsqueda en regulaciones, análisis de contratos, respuestas a preguntas de empleados. (Open WebUI, Ollama, AnythingLLM)",
+    "services.s1.example": "Ejemplo: El bot analiza un contrato de 100 páginas y resalta los riesgos de penalización en segundos.",
+    "services.s2.title": "Data Warehouse",
+    "services.s2.desc": "Única fuente de verdad, data marts automatizados, reportes financieros. (ClickHouse, Airflow, dbt)",
+    "services.s2.example": "Ejemplo: Recolección de transacciones de 5 sistemas en un solo data mart actualizado cada minuto.",
+    "services.s3.title": "Data Observability",
+    "services.s3.desc": "Control de calidad de datos, monitoreo de ETL, alertas de anomalías. (OpenMetadata, Great Expectations)",
+    "services.s3.example": "Ejemplo: Alerta automática en Telegram si falla la extracción nocturna de datos del CRM.",
+    "services.s4.title": "Catálogo de Datos",
+    "services.s4.desc": "Descripciones de métricas, propietarios de datos, búsqueda de tablas y reportes. (DataHub, OpenMetadata)",
+    "services.s4.example": "Ejemplo: Un portal único donde todos pueden ver la fórmula exacta del LTV.",
+    "services.s5.title": "Plataforma Analítica",
+    "services.s5.desc": "Dashboards, KPIs, control de ventas y finanzas. (Apache Superset, Metabase, Grafana)",
+    "services.s5.example": "Ejemplo: Dashboard interactivo para el CEO con análisis de objetivo vs real por región.",
+    "services.s6.title": "Automatización de Procesos",
+    "services.s6.desc": "Reportes automatizados, notificaciones, integraciones entre servicios. (n8n, Kestra)",
+    "services.s6.example": "Ejemplo: Un flujo de trabajo que genera un reporte en PDF y lo envía por correo a los inversores el día 1 de cada mes.",
+    "services.s7.title": "Reemplazo del Stack Atlassian",
+    "services.s7.desc": "Alternativas locales: Plane por Jira, Outline por Confluence, Mattermost por Slack.",
+    "services.s7.example": "Ejemplo: Migración de 1000 tickets y base de conocimientos a soluciones independientes self-hosted.",
+
+    "metrics.kicker": "№ 002 — Resultados",
+    "metrics.title": "Números que prueban la experiencia",
+    "metrics.m1": "Crecimiento promedio del ROI después de implementar BI",
+    "metrics.m2": "Grandes implementaciones en retail y fintech",
+    "metrics.m3": "Monitoreo automatizado de sistemas",
+
+    "process.kicker": "№ 003 — Método",
+    "process.title": "Enfoque STAR. Sin desviaciones.",
+    "process.p1.title": "Situación",
+    "process.p1.desc": "Auditoría del estado actual: dónde viven los datos, cómo se recopilan y qué problemas obstaculizan el negocio.",
+    "process.p2.title": "Tarea",
+    "process.p2.desc": "Definición de KPIs claros, diseño de la arquitectura del almacén y selección del stack óptimo.",
+    "process.p3.title": "Acción",
+    "process.p3.desc": "Construcción de pipelines ETL, implementación de modelos de IA y creación de dashboards analíticos.",
+    "process.p4.title": "Resultado",
+    "process.p4.desc": "Un sistema de datos llave en mano con monitoreo automatizado, métricas y ROI medible.",
+
+    "tools.kicker": "№ 004 — Herramientas",
+    "tools.title": "Un stack que resuelve problemas",
+    "tools.hint": "← desliza las tarjetas →",
+    "tools.case": "Caso",
+    "tools.solution": "Cómo lo resolvimos",
+    "tools.example": "Ejemplo",
+
+    "tools.sql.desc": "Analítica en tiempo real sobre miles de millones de filas. Agregados en segundos.",
+    "tools.sql.task": "Objetivo: calcular DAU/MAU por ciudad en 7 días sobre 2B de eventos.",
+    "tools.sql.sol": "Solución: ClickHouse + función uniq() — respuesta en ~1.2s.",
+    "tools.pg.desc": "Almacenamiento relacional confiable para datos maestros y lógica de negocio.",
+    "tools.pg.task": "Objetivo: almacenar perfiles de usuario con integridad transaccional.",
+    "tools.pg.sol": "Solución: PostgreSQL + campos JSONB para atributos flexibles.",
+    "tools.air.desc": "Orquestación de pipelines ETL. DAGs con dependencias y alertas.",
+    "tools.air.task": "Objetivo: carga nocturna de 12 fuentes con dependencias.",
+    "tools.air.sol": "Solución: DAG con alertas de SLA a Telegram, tasa de fallo reducida al 0.3%.",
+    "tools.dbt.desc": "Transformación de datos en el almacén. Ingeniería de software para SQL.",
+    "tools.dbt.task": "Objetivo: versionar lógica de negocio y probar métricas.",
+    "tools.dbt.sol": "Solución: dbt + CI/CD. Documentación y pruebas generadas automáticamente.",
+    "tools.ometa.desc": "Plataforma unificada de Catálogo de Datos y Observabilidad.",
+    "tools.ometa.task": "Objetivo: los analistas no saben de dónde proviene la métrica de Ingresos.",
+    "tools.ometa.sol": "Solución: OpenMetadata con linaje de datos desde la BD hasta el dashboard.",
+    "tools.super.desc": "Plataforma de BI moderna. Dashboards, SQL Lab y almacenamiento en caché.",
+    "tools.super.task": "Objetivo: proporcionar reportes interactivos a 100 gerentes.",
+    "tools.super.sol": "Solución: Apache Superset sobre ClickHouse con caché en Redis.",
+    "tools.meta.desc": "Sistema de BI ligero para analítica de autoservicio sin conocimiento de SQL.",
+    "tools.meta.task": "Objetivo: marketing quiere construir embudos por su cuenta.",
+    "tools.meta.sol": "Solución: Metabase con modelos de datos preconfigurados.",
+    "tools.grafana.desc": "Monitoreo de infraestructura y alertas en tiempo real.",
+    "tools.grafana.task": "Objetivo: monitorear la carga del servidor de base de datos.",
+    "tools.grafana.sol": "Solución: Grafana + Prometheus para visualización de métricas de CPU/RAM.",
+    "tools.ai.desc": "Agentes LLM locales para tareas corporativas sin filtración de datos a APIs públicas.",
+    "tools.ai.task": "Objetivo: RRHH pasa 4 horas/día respondiendo preguntas sobre políticas.",
+    "tools.ai.sol": "Solución: Open WebUI + Ollama con RAG sobre la base de conocimientos de la empresa.",
+    "tools.allm.desc": "Aplicación RAG versátil para trabajar con documentos empresariales.",
+    "tools.allm.task": "Objetivo: encontrar rápidamente cláusulas en un contrato de 500 páginas.",
+    "tools.allm.sol": "Solución: AnythingLLM con una base de datos vectorial local.",
+    "tools.n8n.desc": "Automatización visual de flujos de trabajo. Alternativa self-hosted a Zapier.",
+    "tools.n8n.task": "Objetivo: enviar alerta a un mensajero cuando caigan las ventas regionales.",
+    "tools.n8n.sol": "Solución: flujo de trabajo n8n (Webhook -> ClickHouse -> Telegram).",
+    "tools.py.desc": "Lenguaje universal para ML, scripts y transformación de datos compleja.",
+    "tools.py.task": "Objetivo: predecir la fuga de usuarios (Churn).",
+    "tools.py.sol": "Solución: modelo scikit-learn, programado en Airflow.",
+    "tools.git.desc": "Control de versiones para código analítico (Analytics as Code).",
+    "tools.git.task": "Objetivo: los analistas sobrescriben el código de otros en el almacén.",
+    "tools.git.sol": "Solución: GitLab/GitHub con revisión de código obligatoria para modelos dbt.",
+
+    "pricing.base.tag": "Básico",
+    "pricing.base.name": "Auditoría",
+    "pricing.base.price": "$1.5k",
+    "pricing.base.desc": "Investigación única de la infraestructura y calidad de datos.",
+    "pricing.pop.tag": "Popular",
+    "pricing.pop.name": "Implementación",
+    "pricing.pop.price": "$4.5k+",
+    "pricing.pop.desc": "Dashboards y analítica end-to-end llave en mano.",
+    "pricing.cust.tag": "A medida",
+    "pricing.cust.name": "Pronóstico",
+    "pricing.cust.price": "desde $8k",
+    "pricing.cust.desc": "Modelado de ML y analítica predictiva para sistemas complejos.",
+    "pricing.choose": "Elegir",
+
+    "contact.kicker": "№ 005 — Contacto",
+    "contact.title": "¿LISTO PARA OPTIMIZAR?",
+    "contact.name": "Nombre",
+    "contact.email": "Correo",
+    "contact.task": "Tarea",
+    "contact.send": "Enviar solicitud",
+    "contact.sent": "Enviado ✓",
+
+    "footer.rights": "© 2026 CRESTVALE ANALYTICS. TODOS LOS SISTEMAS NOMINALES.",
+
+    "ui.theme.light": "Claro",
+    "ui.theme.dark": "Oscuro",
+    "ui.lang": "RU / EN / ES",
   },
 };
 
@@ -287,7 +416,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (typeof window === "undefined") return;
     const sl = localStorage.getItem("lang") as Lang | null;
     const st = localStorage.getItem("theme") as Theme | null;
-    if (sl === "ru" || sl === "en") setLang(sl);
+    if (sl === "ru" || sl === "en" || sl === "es") setLang(sl);
     if (st === "light" || st === "dark") setTheme(st);
     else if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) setTheme("dark");
   }, []);
@@ -305,12 +434,20 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return typeof v === "string" ? v : key;
   };
 
+  const cycleLang = () => {
+    setLang((l) => {
+      if (l === "ru") return "en";
+      if (l === "en") return "es";
+      return "ru";
+    });
+  };
+
   return (
     <AppCtx.Provider
       value={{
         lang,
         setLang,
-        toggleLang: () => setLang((l) => (l === "ru" ? "en" : "ru")),
+        toggleLang: cycleLang,
         theme,
         setTheme,
         toggleTheme: () => setTheme((t) => (t === "light" ? "dark" : "light")),
