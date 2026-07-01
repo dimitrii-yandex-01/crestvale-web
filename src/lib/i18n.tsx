@@ -42,6 +42,9 @@ const dict: Record<Lang, Dict> = {
     "services.s7.title": "Замена Atlassian-стека",
     "services.s7.desc": "Локальные аналоги: Plane вместо Jira, Outline вместо Confluence, Mattermost вместо Slack.",
     "services.s7.example": "Пример: Миграция 1000 тикетов и базы знаний на независимые self-hosted решения.",
+    "services.s8.title": "Предиктивная аналитика и ML",
+    "services.s8.desc": "Прогнозирование спроса, сегментация и анализ оттока. (Python, LightGBM, Scikit-learn)",
+    "services.s8.example": "Пример: ML-модель предсказывает вероятность оттока клиента с точностью 85% за месяц до ухода.",
 
     "metrics.kicker": "№ 002 — Результаты",
     "metrics.title": "Цифры, которые подтверждают экспертизу",
@@ -171,6 +174,9 @@ const dict: Record<Lang, Dict> = {
     "services.s7.title": "Atlassian Stack Replacement",
     "services.s7.desc": "Local alternatives: Plane for Jira, Outline for Confluence, Mattermost for Slack.",
     "services.s7.example": "Example: Migrating 1000 tickets and knowledge base to independent self-hosted solutions.",
+    "services.s8.title": "Predictive Analytics & ML",
+    "services.s8.desc": "Demand forecasting, segmentation, and churn analysis. (Python, LightGBM, Scikit-learn)",
+    "services.s8.example": "Example: An ML model predicts the probability of customer churn with 85% accuracy a month in advance.",
 
     "metrics.kicker": "№ 002 — Results",
     "metrics.title": "Numbers that prove expertise",
@@ -300,6 +306,9 @@ const dict: Record<Lang, Dict> = {
     "services.s7.title": "Reemplazo del Stack Atlassian",
     "services.s7.desc": "Alternativas locales: Plane por Jira, Outline por Confluence, Mattermost por Slack.",
     "services.s7.example": "Ejemplo: Migración de 1000 tickets y base de conocimientos a soluciones independientes self-hosted.",
+    "services.s8.title": "Analítica Predictiva y ML",
+    "services.s8.desc": "Pronóstico de demanda, segmentación y análisis de abandono. (Python, LightGBM, Scikit-learn)",
+    "services.s8.example": "Ejemplo: Un modelo de ML predice la probabilidad de abandono del cliente con un 85% de precisión con un mes de anticipación.",
 
     "metrics.kicker": "№ 002 — Resultados",
     "metrics.title": "Números que prueban la experiencia",

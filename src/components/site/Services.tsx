@@ -15,6 +15,7 @@ export function Services() {
     { num: "05", title: t("services.s5.title"), desc: t("services.s5.desc"), example: t("services.s5.example") },
     { num: "06", title: t("services.s6.title"), desc: t("services.s6.desc"), example: t("services.s6.example") },
     { num: "07", title: t("services.s7.title"), desc: t("services.s7.desc"), example: t("services.s7.example") },
+    { num: "08", title: t("services.s8.title"), desc: t("services.s8.desc"), example: t("services.s8.example") },
   ];
 
   return (
